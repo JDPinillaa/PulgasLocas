@@ -8,6 +8,16 @@ package pulgaslocaspoo.models;
  *
  * @author ACER
  */
-public class PistolaPulguipium {
+public class PistolaPulguipium extends Arma {
+    @Override
+    public void disparar(CampoBatalla campo, int x, int y) {
+        for (Pulga pulga : campo.getPulgasEnRadio(x, y, 20)) {
+            if (pulga.impactar()) {
+                campo.eliminarPulga(pulga);
+                // Actualizar puntuación
+            }
+        }
+    }
+    
     
 }

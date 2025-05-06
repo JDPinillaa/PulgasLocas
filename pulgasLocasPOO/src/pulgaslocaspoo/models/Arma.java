@@ -8,6 +8,7 @@ package pulgaslocaspoo.models;
  *
  * @author ACER
  */
-public class Arma {
+public abstract class Arma {
+     public abstract void disparar(CampoBatalla campo, int x, int y);
     
 }
