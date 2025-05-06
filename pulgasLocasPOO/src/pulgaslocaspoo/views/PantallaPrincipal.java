@@ -28,9 +28,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        startSimulationButton = new javax.swing.JLabel();
+        bestScoreButton = new javax.swing.JLabel();
+        exitButton = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,20 +41,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(60, 43, 43));
         jLabel1.setText("Pulgas Locas");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(58, 16, 16));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/startButton.png"))); // NOI18N
-        jLabel3.setText("Iniciar Simulacion");
+        startSimulationButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        startSimulationButton.setForeground(new java.awt.Color(58, 16, 16));
+        startSimulationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/startButton.png"))); // NOI18N
+        startSimulationButton.setText("Iniciar Simulacion");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/mejorPuntaje.png"))); // NOI18N
-        jLabel4.setText("    Mejor Puntaje");
+        bestScoreButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bestScoreButton.setForeground(new java.awt.Color(51, 0, 0));
+        bestScoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/mejorPuntaje.png"))); // NOI18N
+        bestScoreButton.setText("    Mejor Puntaje");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/salir.png"))); // NOI18N
-        jLabel5.setText("Salir");
+        exitButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        exitButton.setForeground(new java.awt.Color(51, 0, 0));
+        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/salir.png"))); // NOI18N
+        exitButton.setText("   Salir");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/pulga_normal.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,31 +64,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(65, 65, 65))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addComponent(startSimulationButton)
+                .addGap(81, 81, 81))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addGap(95, 95, 95))
+                    .addComponent(exitButton)
+                    .addComponent(bestScoreButton))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(startSimulationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(jLabel4))
+                        .addComponent(bestScoreButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jLabel1)))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(exitButton)
                 .addGap(30, 30, 30))
         );
 
@@ -139,10 +146,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bestScoreButton;
+    private javax.swing.JLabel exitButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel startSimulationButton;
     // End of variables declaration//GEN-END:variables
 }
