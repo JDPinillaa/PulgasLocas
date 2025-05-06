@@ -4,6 +4,8 @@
  */
 package pulgaslocaspoo.models;
 
+import java.util.List;
+
 /**
  *
  * @author ACER
@@ -11,12 +13,16 @@ package pulgaslocaspoo.models;
 public class MisilPulgoson extends Arma{
     @Override
     public void disparar(CampoBatalla campo, int x, int y) {
-        var pulgas = campo.getPulgas();
-        int totalEliminar = pulgas.size() / 2;
-        Collections.shuffle(pulgas);
-        for (int i = 0; i < totalEliminar; i++) {
-            campo.eliminarPulga(pulgas.get(i));
+        int radio = 3; // Afecta un área más grande
+        List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio);
+        
+        for (Pulga p : afectadas) {
+            p.impactada = true;
+            p.resistencia -= 2; // Quita más resistencia
+            if (p.resistencia <= 0) {
+                campo.eliminarPulga(p);
+            }
         }
     }
-    
+
 }

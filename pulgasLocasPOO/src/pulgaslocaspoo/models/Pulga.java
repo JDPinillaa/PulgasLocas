@@ -9,5 +9,20 @@ package pulgaslocaspoo.models;
  * @author juand
  */
 public class Pulga {
+    protected int x, y;
+    protected int resistencia;
+    protected boolean impactada;
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public boolean esImpactada() {
+        return impactada;
+    }
     
 }
