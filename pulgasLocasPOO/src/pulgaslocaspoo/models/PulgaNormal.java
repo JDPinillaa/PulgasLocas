@@ -8,6 +8,22 @@ package pulgaslocaspoo.models;
  *
  * @author juand
  */
-public class PulgaNormal {
-    
+public class PulgaNormal extends Pulga {
+    public PulgaNormal() {
+        super(0, 0, 1); // Posición se ajustará luego
+    }
+
+    public PulgaNormal(int x, int y) {
+        super(x, y, 1);
+    }
+
+    @Override
+    public boolean impactar() {
+        return true; // Muere al primer impacto
+    }
+
+    @Override
+    public String getTipo() {
+        return "Normal";
+    }
 }

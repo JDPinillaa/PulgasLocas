@@ -8,21 +8,28 @@ package pulgaslocaspoo.models;
  *
  * @author juand
  */
-public class Pulga {
-    protected int x, y;
-    protected int resistencia;
-    protected boolean impactada;
+public abstract class Pulga {
+    private int x;
+    private int y;
+    private int resistencia;
+    private boolean impactada;
 
-    public int getX() {
-        return x;
+    public Pulga(int x, int y, int resistencia) {
+        this.x = x;
+        this.y = y;
+        this.resistencia = resistencia;
     }
 
-    public int getY() {
-        return y;
-    }
+    public abstract boolean impactar();
+    public abstract String getTipo();
 
-    public boolean esImpactada() {
-        return impactada;
-    }
-    
+    // Getters y Setters
+    public int getX() { return x; }
+    public void setX(int x) { this.x = x; }
+    public int getY() { return y; }
+    public void setY(int y) { this.y = y; }
+    public int getResistencia() { return resistencia; }
+    public void setResistencia(int resistencia) { this.resistencia = resistencia; }
+    public boolean isImpactada() { return impactada; }
+    public void setImpactada(boolean impactada) { this.impactada = impactada; }
 }

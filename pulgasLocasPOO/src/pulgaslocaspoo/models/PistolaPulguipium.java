@@ -18,9 +18,9 @@ public class PistolaPulguipium extends Arma {
         
         if (!afectadas.isEmpty()) {
             Pulga objetivo = afectadas.get(0); // Solo afecta a la primera que encuentre
-            objetivo.impactada = true;
-            objetivo.resistencia -= 1; // Menos daño
-            if (objetivo.resistencia <= 0) {
+            objetivo.setImpactada(true);
+            objetivo.setResistencia(objetivo.getResistencia() - 1); // Menos daño
+            if (objetivo.getResistencia() <= 0) {
                 campo.eliminarPulga(objetivo);
             }
         }

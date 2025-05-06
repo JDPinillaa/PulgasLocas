@@ -17,9 +17,9 @@ public class MisilPulgoson extends Arma{
         List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio);
         
         for (Pulga p : afectadas) {
-            p.impactada = true;
-            p.resistencia -= 2; // Quita más resistencia
-            if (p.resistencia <= 0) {
+            p.setImpactada(true);
+            p.setResistencia(p.getResistencia() - 2); // Quita más resistencia
+            if (p.getResistencia() <= 0) {
                 campo.eliminarPulga(p);
             }
         }

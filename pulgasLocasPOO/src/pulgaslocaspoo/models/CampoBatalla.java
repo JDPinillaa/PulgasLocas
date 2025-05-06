@@ -1,37 +1,82 @@
 package pulgaslocaspoo.models;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class CampoBatalla {
-    private List<Pulga> pulgas = new ArrayList<>();
-    private int ancho;
-    private int alto;
+    private final int ancho;
+    private final int alto;
+    private final List<Pulga> pulgas;
+    private final Random rand;
 
-    public void agregarPulga(Pulga p) {
-        pulgas.add(p);
+    public CampoBatalla(int ancho, int alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+        this.pulgas = new CopyOnWriteArrayList<>(); // Lista segura para hilos
+        this.rand = new Random();
     }
 
-    public void eliminarPulga(Pulga p) {
-        pulgas.remove(p);
+
+    /**
+     * Agrega una pulga en una posición libre (auto-reintenta hasta encontrar espacio).
+     */
+    public void agregarPulgaSafe(Pulga pulga) {
+        do {
+            pulga.setX(rand.nextInt(ancho));
+            pulga.setY(rand.nextInt(alto));
+        } while (existeColision(pulga));
+        
+        pulgas.add(pulga);
     }
 
+    /**
+     * Elimina una pulga del campo.
+     */
+    public void eliminarPulga(Pulga pulga) {
+        pulgas.remove(pulga);
+    }
+
+    /**
+     * Obtiene todas las pulgas dentro de un radio específico.
+     */
+    public List<Pulga> getPulgasEnRadio(int x, int y, int radio) {
+        return pulgas.stream()
+            .filter(p -> Math.hypot(p.getX() - x, p.getY() - y) <= radio)
+            .toList();
+    }
+
+    /**
+     * Mueve todas las pulgas a posiciones aleatorias (comando 's').
+     */
     public void actualizarPosiciones() {
-        // Actualiza las posiciones de las pulgas
+        pulgas.forEach(p -> {
+            p.setX(rand.nextInt(ancho));
+            p.setY(rand.nextInt(alto));
+        });
     }
 
-    public List<Pulga> getPulgasEnRadio(int x, int y, int r) {
-        List<Pulga> enRadio = new ArrayList<>();
-        for (Pulga p : pulgas) {
-            int dx = p.getX() - x;
-            int dy = p.getY() - y;
-            if (Math.sqrt(dx * dx + dy * dy) <= r) {
-                enRadio.add(p);
-            }
-        }
-        return enRadio;
+    
+    public boolean estaVacio() {
+        return pulgas.isEmpty();
     }
 
+    private boolean existeColision(Pulga pulga) {
+        return pulgas.stream().anyMatch(p -> 
+            Math.abs(p.getX() - pulga.getX()) < 20 && 
+            Math.abs(p.getY() - pulga.getY()) < 20
+        );
+    }
+
+    
     public List<Pulga> getPulgas() {
-        return pulgas;
+        return Collections.unmodifiableList(pulgas);
+    }
+
+    public int getAncho() {
+        return ancho;
+    }
+
+    public int getAlto() {
+        return alto;
     }
 }
