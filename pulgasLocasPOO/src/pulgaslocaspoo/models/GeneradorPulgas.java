@@ -4,10 +4,40 @@
  */
 package pulgaslocaspoo.models;
 
+import java.util.Random;
+
 /**
  *
  * @author ACER
  */
-public class GeneradorPulgas {
+public class GeneradorPulgas extends Thread {
+    private final CampoBatalla campo;
+    private volatile boolean activo = true;
+    private final Random rand = new Random();
+
+    public GeneradorPulgas(CampoBatalla campo) {
+        this.campo = campo;
+        setDaemon(true);
+    }
+
+    @Override
+    public void run() {
+        while (activo) {
+            try {
+                Thread.sleep(5000); // Pulgas normales cada 5s
+                campo.agregarPulgaSafe(new PulgaNormal());
+                
+                Thread.sleep(5000); // Pulgas mutantes cada 10s
+                campo.agregarPulgaSafe(new PulgaMutante());
+            } catch (InterruptedException e) {
+                System.out.println("Generador interrumpido");
+            }
+        }
+    }
+
+    public void detener() {
+        activo = false;
+        interrupt();
+    }
     
 }
