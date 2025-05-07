@@ -17,17 +17,16 @@ public class Mapa extends javax.swing.JFrame {
      */
     public Mapa() {
         campo = new CampoBatalla(800, 600); // Tamaño del campo de batalla
-        panelCampo = new PanelCampo(campo, null); // Crear el PanelCampo
-        simulador = new SimuladorPulgas(campo, panelCampo); // Pasar el PanelCampo al simulador
-        panelCampo.setSimulador(simulador); // Configurar el simulador en el PanelCampo
+        simulador = new SimuladorPulgas(campo); // Crear el simulador
+        panelCampo = new PanelCampo(campo, simulador); // Crear el PanelCampo
 
         initComponents();
 
-        // Configurar el jPanel1 para que contenga el PanelCampo
-        jPanel1.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(panelCampo);
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        // Configurar el panelCampoContaige para que contenga el PanelCampo
+        panelCampoContaige.setLayout(new java.awt.BorderLayout());
+        panelCampoContaige.add(panelCampo);
+        panelCampoContaige.revalidate();
+        panelCampoContaige.repaint();
 
         // Agregar KeyListener para manejar teclas
         this.addKeyListener(new java.awt.event.KeyAdapter() {
