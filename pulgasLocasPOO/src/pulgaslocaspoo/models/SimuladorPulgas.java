@@ -60,7 +60,7 @@ public class SimuladorPulgas {
                 campo.actualizarPosiciones();
                 break;
             case ' ': 
-                // Obtener las coordenadas del mouse (ejemplo: desde la interfaz gráfica)
+                System.out.println("Tecla de disparo del misil detectada.");
                 int mouseX = obtenerCoordenadaMouseX();
                 int mouseY = obtenerCoordenadaMouseY();
                 new MisilPulgoson().disparar(campo, mouseX, mouseY, this); 
@@ -143,5 +143,21 @@ public class SimuladorPulgas {
 
     public PanelCampo getPanelCampo() {
         return panelCampo;
+    }
+
+    public void setPanelCampo(PanelCampo panelCampo) {
+        this.panelCampo = panelCampo;
+    }
+
+    public void actualizarInterfaz() {
+        if (panelCampo != null) {
+            panelCampo.actualizar(); // Redibujar el panel
+        }
+    }
+
+    public void notificarActualizacion() {
+        if (panelCampo != null) {
+            panelCampo.actualizar(); // Redibujar el panel
+        }
     }
 }

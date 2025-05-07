@@ -17,8 +17,11 @@ public class Mapa extends javax.swing.JFrame {
      */
     public Mapa() {
         campo = new CampoBatalla(800, 600); // Tamaño del campo de batalla
-        simulador = new SimuladorPulgas(campo); // Crear el simulador
-        panelCampo = new PanelCampo(campo, simulador); // Crear el PanelCampo
+        simulador = new SimuladorPulgas(campo, null); // Crear el simulador sin el panel inicialmente
+        panelCampo = new PanelCampo(campo, simulador); // Crear el PanelCampo con el simulador
+
+        // Ahora actualiza la referencia del panel en el simulador
+        simulador.setPanelCampo(panelCampo);
 
         initComponents();
 
@@ -40,7 +43,7 @@ public class Mapa extends javax.swing.JFrame {
                 char tecla = evt.getKeyChar();
                 simulador.manejarTecla(tecla);
                 panelCampo.actualizar();
-                actualizarPuntaje();
+                actualizarPuntaje(); // Actualizar el puntaje en la interfaz
             }
         });
 

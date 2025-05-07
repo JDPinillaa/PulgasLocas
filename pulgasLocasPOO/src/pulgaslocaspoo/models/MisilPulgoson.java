@@ -4,6 +4,8 @@
  */
 package pulgaslocaspoo.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import pulgaslocaspoo.utils.Reproductor;
 
@@ -17,17 +19,24 @@ public class MisilPulgoson extends Arma{
     public void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador) {
         Reproductor.reproducirSonido("src/pulgaslocaspoo/resources/explosion.wav");
 
-        int radio = 3; // Afecta un área más grande
-        List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio); // Usar las coordenadas del mouse
+        // Obtener todas las pulgas en el campo
+        List<Pulga> todasLasPulgas = new ArrayList<>(campo.getPulgas());
 
-        for (Pulga p : afectadas) {
-            p.setResistencia(p.getResistencia() - 2); // Quita más resistencia
-            if (p.getResistencia() <= 0) {
-                campo.eliminarPulga(p);
-                simulador.aumentarPuntuacion(1); // Incrementar puntuación
-                simulador.getPanelCampo().actualizar(); // Redibujar el panel
-            }
+        // Calcular cuántas pulgas eliminar (la mitad redondeada hacia abajo)
+        int cantidadAEliminar = todasLasPulgas.size() / 2;
+
+        // Mezclar la lista para seleccionar pulgas aleatorias
+        Collections.shuffle(todasLasPulgas);
+
+        // Eliminar la mitad de las pulgas
+        for (int i = 0; i < cantidadAEliminar; i++) {
+            Pulga pulga = todasLasPulgas.get(i);
+            campo.eliminarPulga(pulga);
+            simulador.aumentarPuntuacion(1); // Incrementar puntuación por cada pulga eliminada
         }
+
+        // Redibujar el panel
+        simulador.getPanelCampo().actualizar();
     }
 
 }
