@@ -39,7 +39,20 @@ public class CampoBatalla {
      * Obtiene todas las pulgas dentro de un radio específico.
      */
     public List<Pulga> getPulgasEnRadio(int x, int y, int radio) {
-        return pulgas.stream().filter(p -> Math.hypot(p.getX() - x, p.getY() - y) <= radio).toList();
+        System.out.println("Coordenadas de todas las pulgas:");
+        for (Pulga p : pulgas) {
+            System.out.println("Pulga en posición: (" + p.getX() + ", " + p.getY() + ")");
+        }
+
+        List<Pulga> pulgasEnRadio = new ArrayList<>();
+        for (Pulga p : pulgas) {
+            double distancia = Math.hypot(p.getX() - x, p.getY() - y);
+            if (distancia <= radio) {
+                pulgasEnRadio.add(p);
+            }
+        }
+        System.out.println("Pulgas en radio (" + x + ", " + y + ", " + radio + "): " + pulgasEnRadio.size());
+        return pulgasEnRadio;
     }
 
     /**

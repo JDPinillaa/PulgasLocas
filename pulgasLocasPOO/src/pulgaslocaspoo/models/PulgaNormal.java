@@ -13,12 +13,12 @@ import javax.swing.ImageIcon;
 public class PulgaNormal extends Pulga {
     public PulgaNormal() {
         super(0, 0, 1); // Posición se ajustará luego
-        this.imagen = new ImageIcon("src/resources/pulga_normal.png").getImage();
+        this.imagen = new ImageIcon("src/pulgaslocaspoo/resources/pulga_normal.png").getImage();
     }
 
     public PulgaNormal(int x, int y) {
         super(x, y, 1);
-        this.imagen = new ImageIcon("src/resources/pulga_normal.png").getImage();
+        this.imagen = new ImageIcon("src/pulgaslocaspoo/resources/pulga_normal.png").getImage();
     }
 
     @Override

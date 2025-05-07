@@ -15,9 +15,9 @@ public class PistolaPulguipium extends Arma {
 
     @Override
     public void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador) {
-        Reproductor.reproducirSonido("src/resources/disparo.wav");
+        Reproductor.reproducirSonido("src/pulgaslocaspoo/resources/disparo.wav");
 
-        int radio = 1; // Precisión cercana
+        int radio = 100; //area de impacto 
         List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio);
 
         if (!afectadas.isEmpty()) {

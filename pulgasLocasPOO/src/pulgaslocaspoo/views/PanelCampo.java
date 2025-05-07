@@ -27,7 +27,8 @@ public class PanelCampo extends JPanel {
         this.campo = campo;
         this.simulador = simulador;
         this.setPreferredSize(new Dimension(campo.getAncho(), campo.getAlto()));
-        this.setBackground(Color.WHITE);
+        this.setBackground(Color.GREEN);
+        this.setFocusable(true); // Permitir el enfoque para recibir eventos de teclado
 
         // Agregar MouseListener para manejar clics
         this.addMouseListener(new MouseAdapter() {

@@ -49,13 +49,15 @@ public class SimuladorPulgas {
     public void manejarTecla(char tecla) {
         switch (tecla) {
             case 'p': 
-                campo.agregarPulga(new PulgaNormal()); 
+                campo.agregarPulga(new PulgaNormal());
+                JOptionPane.showMessageDialog(null, "Pulga Normal creada");
                 break;
             case 'm': 
-                campo.agregarPulga(new PulgaMutante()); 
+                campo.agregarPulga(new PulgaMutante());
+                JOptionPane.showMessageDialog(null, "Pulga Mutante creada");
                 break;
             case 's': 
-                campo.actualizarPosiciones(); 
+                campo.actualizarPosiciones();
                 break;
             case ' ': 
                 // Obtener las coordenadas del mouse (ejemplo: desde la interfaz gráfica)
@@ -137,5 +139,9 @@ public class SimuladorPulgas {
     // Para modificar puntuación
     public void aumentarPuntuacion(int puntos) { 
         puntuacionActual += puntos; 
+    }
+
+    public PanelCampo getPanelCampo() {
+        return panelCampo;
     }
 }

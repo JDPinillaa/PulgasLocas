@@ -13,12 +13,12 @@ import javax.swing.ImageIcon;
 public class PulgaMutante extends Pulga {
     public PulgaMutante() {
         super(0, 0, 2);
-        this.imagen = new ImageIcon("src/resources/pulga_mutante.png").getImage();
+        this.imagen = new ImageIcon("src/pulgaslocaspoo/resources/pulga_mutante.png").getImage();
     }
 
     public PulgaMutante(int x, int y) {
         super(x, y, 2);
-        this.imagen = new ImageIcon("src/resources/pulga_mutante.png").getImage();
+        this.imagen = new ImageIcon("src/pulgaslocaspoo/resources/pulga_mutante.png").getImage();
     }
 
     @Override
