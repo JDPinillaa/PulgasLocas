@@ -9,6 +9,6 @@ package pulgaslocaspoo.models;
  * @author ACER
  */
 public abstract class Arma {
-     public abstract void disparar(CampoBatalla campo, int x, int y);
+    public abstract void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador);
     
 }

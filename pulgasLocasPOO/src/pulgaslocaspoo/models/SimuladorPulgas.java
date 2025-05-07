@@ -4,6 +4,8 @@
  */
 package pulgaslocaspoo.models;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ACER
@@ -19,19 +21,43 @@ public class SimuladorPulgas {
         campo = new CampoBatalla(800, 600);
         generador = new GeneradorPulgas(campo);
         archivoPuntuacion = new ArchivoPuntuacion();
-        puntuacionMaxima = archivoPuntuacion.cargarMaxima();
+        puntuacionMaxima = archivoPuntuacion.leerPuntajeMaximo(); // Método corregido
         generador.start();
     }
 
     public void manejarTecla(char tecla) {
         switch (tecla) {
-            case 'p': campo.agregarPulgaSafe(new PulgaNormal()); break;
-            case 'm': campo.agregarPulgaSafe(new PulgaMutante()); break;
-            case 's': campo.actualizarPosiciones(); break;
-            case ' ': new MisilPulgoson().disparar(campo, this); break;
-            case 'q': terminarSimulacion(); break;
+            case 'p': 
+                campo.agregarPulga(new PulgaNormal()); 
+                break;
+            case 'm': 
+                campo.agregarPulga(new PulgaMutante()); 
+                break;
+            case 's': 
+                campo.actualizarPosiciones(); 
+                break;
+            case ' ': 
+                // Obtener las coordenadas del mouse (ejemplo: desde la interfaz gráfica)
+                int mouseX = obtenerCoordenadaMouseX();
+                int mouseY = obtenerCoordenadaMouseY();
+                new MisilPulgoson().disparar(campo, mouseX, mouseY, this); 
+                break;
+            case 'q': 
+                terminarSimulacion(); 
+                break;
         }
         verificarFinJuego();
+    }
+
+    // Métodos para obtener las coordenadas del mouse (implementación dependerá de la interfaz gráfica)
+    private int obtenerCoordenadaMouseX() {
+        // Ejemplo: devolver una coordenada fija o implementar lógica para obtenerla
+        return 400; // Coordenada X del mouse
+    }
+
+    private int obtenerCoordenadaMouseY() {
+        // Ejemplo: devolver una coordenada fija o implementar lógica para obtenerla
+        return 300; // Coordenada Y del mouse
     }
 
     public void manejarClic(int x, int y) {
@@ -40,6 +66,9 @@ public class SimuladorPulgas {
 
     private void verificarFinJuego() {
         if (campo.estaVacio()) {
+            // Actualizar puntaje máximo antes de preguntar al usuario
+            actualizarPuntajeMaximo();
+
             int opcion = JOptionPane.showConfirmDialog(null, 
                 "¡Has ganado! ¿Reiniciar?", "Fin del juego", 
                 JOptionPane.YES_NO_OPTION);
@@ -62,16 +91,29 @@ public class SimuladorPulgas {
 
     public void terminarSimulacion() {
         generador.detener();
-        if (puntuacionActual > puntuacionMaxima) {
-            archivoPuntuacion.guardarMaxima(puntuacionActual);
-        }
+        actualizarPuntajeMaximo(); // Asegurarse de guardar el puntaje máximo
         System.exit(0);
     }
 
+    private void actualizarPuntajeMaximo() {
+        if (puntuacionActual > puntuacionMaxima) {
+            puntuacionMaxima = puntuacionActual;
+            archivoPuntuacion.actualizarPuntajeMaximo(puntuacionMaxima); // Método corregido
+        }
+    }
+
     // Getters
-    public CampoBatalla getCampoBatalla() { return campo; }
-    public int getPuntuacionActual() { return puntuacionActual; }
-    public int getPuntuacionMaxima() { return puntuacionMaxima; }
+    public CampoBatalla getCampoBatalla() { 
+        return campo; 
+    }
+
+    public int getPuntuacionActual() { 
+        return puntuacionActual; 
+    }
+
+    public int getPuntuacionMaxima() { 
+        return puntuacionMaxima; 
+    }
     
     // Para modificar puntuación
     public void aumentarPuntuacion(int puntos) { 

@@ -12,19 +12,20 @@ import java.util.List;
  */
 public class PistolaPulguipium extends Arma {
     @Override
-    public void disparar(CampoBatalla campo, int x, int y) {
+    public void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador) {
         int radio = 1; // Precisión cercana
         List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio);
-        
+
         if (!afectadas.isEmpty()) {
             Pulga objetivo = afectadas.get(0); // Solo afecta a la primera que encuentre
-            objetivo.setImpactada(true);
-            objetivo.setResistencia(objetivo.getResistencia() - 1); // Menos daño
-            if (objetivo.getResistencia() <= 0) {
-                campo.eliminarPulga(objetivo);
+            if (!objetivo.isImpactada()) { // Validar si ya fue impactada
+                objetivo.setImpactada(true);
+                objetivo.setResistencia(objetivo.getResistencia() - 1); // Menos daño
+                if (objetivo.getResistencia() <= 0) {
+                    campo.eliminarPulga(objetivo);
+                    simulador.aumentarPuntuacion(1); // Incrementar puntuación
+                }
             }
         }
     }
- 
-    
 }

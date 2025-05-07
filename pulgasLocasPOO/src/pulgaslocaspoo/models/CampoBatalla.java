@@ -1,6 +1,5 @@
 package pulgaslocaspoo.models;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class CampoBatalla {
@@ -12,7 +11,7 @@ public class CampoBatalla {
     public CampoBatalla(int ancho, int alto) {
         this.ancho = ancho;
         this.alto = alto;
-        this.pulgas = new CopyOnWriteArrayList<>(); // Lista segura para hilos
+        this.pulgas = new ArrayList<>(); // Lista no segura para hilos
         this.rand = new Random();
     }
 
@@ -20,7 +19,7 @@ public class CampoBatalla {
     /**
      * Agrega una pulga en una posición libre (auto-reintenta hasta encontrar espacio).
      */
-    public void agregarPulgaSafe(Pulga pulga) {
+    public void agregarPulga(Pulga pulga) { // Cambiado de agregarPulgaSafe a agregarPulga
         do {
             pulga.setX(rand.nextInt(ancho));
             pulga.setY(rand.nextInt(alto));
@@ -40,9 +39,7 @@ public class CampoBatalla {
      * Obtiene todas las pulgas dentro de un radio específico.
      */
     public List<Pulga> getPulgasEnRadio(int x, int y, int radio) {
-        return pulgas.stream()
-            .filter(p -> Math.hypot(p.getX() - x, p.getY() - y) <= radio)
-            .toList();
+        return pulgas.stream().filter(p -> Math.hypot(p.getX() - x, p.getY() - y) <= radio).toList();
     }
 
     /**
