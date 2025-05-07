@@ -112,6 +112,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Iniciar Simulacion"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="startSimulationButtonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bestScoreButton">
           <Properties>
@@ -126,6 +129,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="    Mejor Puntaje"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bestScoreButtonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="exitButton">
           <Properties>
@@ -140,6 +146,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="   Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitButtonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

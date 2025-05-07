@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package pulgaslocaspoo.views;
+import pulgaslocaspoo.utils.ArchivoPuntuacion;
 
 /**
  *
@@ -45,16 +46,31 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         startSimulationButton.setForeground(new java.awt.Color(58, 16, 16));
         startSimulationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/startButton.png"))); // NOI18N
         startSimulationButton.setText("Iniciar Simulacion");
+        startSimulationButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                startSimulationButtonMouseClicked(evt);
+            }
+        });
 
         bestScoreButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bestScoreButton.setForeground(new java.awt.Color(51, 0, 0));
         bestScoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/mejorPuntaje.png"))); // NOI18N
         bestScoreButton.setText("    Mejor Puntaje");
+        bestScoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bestScoreButtonMouseClicked(evt);
+            }
+        });
 
         exitButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         exitButton.setForeground(new java.awt.Color(51, 0, 0));
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/salir.png"))); // NOI18N
         exitButton.setText("   Salir");
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/pulga_normal.png"))); // NOI18N
 
@@ -110,40 +126,38 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void startSimulationButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startSimulationButtonMouseClicked
+        // Crear una instancia de la ventana del mapa
+        Mapa mapa = new Mapa();
+        mapa.setVisible(true);
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PantallaPrincipal().setVisible(true);
-            }
-        });
-    }
+        // Ocultar la pantalla principal
+        this.setVisible(false);
+    }//GEN-LAST:event_startSimulationButtonMouseClicked
+
+    private void bestScoreButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bestScoreButtonMouseClicked
+        // Leer el puntaje máximo desde ArchivoPuntuacion
+        ArchivoPuntuacion archivoPuntuacion = new ArchivoPuntuacion();
+        int mejorPuntaje = archivoPuntuacion.leerPuntajeMaximo();
+
+        // Mostrar el puntaje máximo en un MessageDialog
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "El mejor puntaje es: " + mejorPuntaje, 
+            "Mejor Puntaje", 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_bestScoreButtonMouseClicked
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        // Confirmar si el usuario realmente quiere salir
+        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "¿Estás seguro de que deseas salir?", 
+            "Salir", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+            System.exit(0); // Cerrar la aplicación
+        }
+    }//GEN-LAST:event_exitButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bestScoreButton;

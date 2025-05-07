@@ -4,7 +4,7 @@
  */
 package pulgaslocaspoo.main;
 
-import pulgaslocaspoo.views.Mapa;
+import pulgaslocaspoo.views.PantallaPrincipal;
 
 /**
  *
@@ -31,8 +31,8 @@ public class PulgasLocasPOO {
 
         // Ejecutar la ventana principal en el hilo de eventos de Swing
         java.awt.EventQueue.invokeLater(() -> {
-            Mapa ventanaPrincipal = new Mapa();
-            ventanaPrincipal.setVisible(true);
+            PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+            pantallaPrincipal.setVisible(true);
         });
     }
 }
