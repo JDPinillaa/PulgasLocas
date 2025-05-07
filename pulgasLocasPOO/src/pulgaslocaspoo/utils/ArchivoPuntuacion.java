@@ -10,7 +10,7 @@ import java.io.*;
  * Clase encargada de manejar la persistencia del puntaje máximo.
  */
 public class ArchivoPuntuacion {
-    private static final String ARCHIVO_PUNTAJE = "puntaje_maximo.txt";
+    private static final String ARCHIVO_PUNTAJE = "src/pulgaslocaspoo/utils/puntaje_maximo.txt";
 
     /**
      * Lee el puntaje máximo almacenado en el archivo.

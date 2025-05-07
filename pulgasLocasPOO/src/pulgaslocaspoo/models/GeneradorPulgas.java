@@ -4,16 +4,13 @@
  */
 package pulgaslocaspoo.models;
 
-import java.util.Random;
-
 /**
  *
  * @author ACER
  */
 public class GeneradorPulgas extends Thread {
     private final CampoBatalla campo;
-    private volatile boolean activo = true;
-    private final Random rand = new Random();
+    private boolean activo = true;
 
     public GeneradorPulgas(CampoBatalla campo) {
         this.campo = campo;
@@ -22,7 +19,7 @@ public class GeneradorPulgas extends Thread {
 
     @Override
     public void run() {
-        while (activo) {
+        while (isActivo()) {
             try {
                 Thread.sleep(5000); // Pulgas normales cada 5s
                 campo.agregarPulga(new PulgaNormal());
@@ -35,9 +32,13 @@ public class GeneradorPulgas extends Thread {
         }
     }
 
-    public void detener() {
+    public synchronized void detener() {
         activo = false;
-        interrupt();
+        interrupt(); // Interrumpir el hilo si está en espera
+    }
+
+    private synchronized boolean isActivo() {
+        return activo;
     }
     
 }

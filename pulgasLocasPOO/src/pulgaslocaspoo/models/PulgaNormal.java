@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  */
 public class PulgaNormal extends Pulga {
     public PulgaNormal() {
-        super(0, 0, 1); // Posición se ajustará luego
+        super(0, 0, 1); 
         this.imagen = new ImageIcon("src/pulgaslocaspoo/resources/pulga_normal.png").getImage();
     }
 

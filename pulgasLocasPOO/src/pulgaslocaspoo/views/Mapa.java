@@ -52,7 +52,17 @@ public class Mapa extends javax.swing.JFrame {
     }
 
     private void actualizarPuntaje() {
-        jLabel2.setText("Puntaje: " + simulador.getPuntuacionActual());
+        jLabel2.setText(": " + simulador.getPuntuacionActual());
+    }
+
+    public void notificarActualizacion() {
+        if (panelCampo != null) {
+            panelCampo.actualizar(); // Redibujar el panel
+        }
+        // Asegurarse de que el puntaje se actualice en la interfaz
+        if (panelCampo.getParent() instanceof Mapa) {
+            ((Mapa) panelCampo.getParent()).actualizarPuntaje();
+        }
     }
 
     /**
