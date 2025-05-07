@@ -3,15 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pulgaslocaspoo.views;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 import pulgaslocaspoo.models.CampoBatalla;
 import pulgaslocaspoo.models.Pulga;
 /**
  *
  * @author ACER
  */
-public class PanelCampo extends Jpanel {
+public class PanelCampo extends JPanel {
     private CampoBatalla campo;
 
     public PanelCampo(CampoBatalla campo) {
