@@ -11,7 +11,7 @@ public class CampoBatalla {
     public CampoBatalla(int ancho, int alto) {
         this.ancho = ancho;
         this.alto = alto;
-        this.pulgas = new ArrayList<>(); // Lista no segura para hilos
+        this.pulgas = new ArrayList<>(); 
         this.rand = new Random();
     }
 
@@ -75,9 +75,5 @@ public class CampoBatalla {
 
     public int getAlto() {
         return alto;
-    }
-
-    void agregarPulgaSafe(PulgaNormal pulgaNormal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

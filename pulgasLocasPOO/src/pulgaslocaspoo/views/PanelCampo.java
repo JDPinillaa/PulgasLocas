@@ -3,21 +3,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pulgaslocaspoo.views;
+
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import pulgaslocaspoo.models.CampoBatalla;
 import pulgaslocaspoo.models.Pulga;
+import pulgaslocaspoo.models.SimuladorPulgas;
+
 /**
  *
  * @author ACER
  */
 public class PanelCampo extends JPanel {
     private CampoBatalla campo;
+    private SimuladorPulgas simulador;
 
-    public PanelCampo(CampoBatalla campo) {
+    public PanelCampo(CampoBatalla campo, SimuladorPulgas simulador) {
         this.campo = campo;
+        this.simulador = simulador;
         this.setPreferredSize(new Dimension(campo.getAncho(), campo.getAlto()));
         this.setBackground(Color.WHITE);
+
+        // Agregar MouseListener para manejar clics
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    // Disparar la pistola Pulguipium
+                    simulador.manejarClic(e.getX(), e.getY());
+                    actualizar();
+                }
+            }
+        });
     }
 
     @Override
@@ -28,9 +47,8 @@ public class PanelCampo extends JPanel {
             g.drawImage(p.getImagen(), p.getX(), p.getY(), this);
         }
     }
-    
+
     public void actualizar() {
         repaint();
     }
-    
 }

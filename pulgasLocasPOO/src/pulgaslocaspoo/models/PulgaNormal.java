@@ -4,6 +4,8 @@
  */
 package pulgaslocaspoo.models;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author juand
@@ -11,10 +13,12 @@ package pulgaslocaspoo.models;
 public class PulgaNormal extends Pulga {
     public PulgaNormal() {
         super(0, 0, 1); // Posición se ajustará luego
+        this.imagen = new ImageIcon("src/resources/pulga_normal.png").getImage();
     }
 
     public PulgaNormal(int x, int y) {
         super(x, y, 1);
+        this.imagen = new ImageIcon("src/resources/pulga_normal.png").getImage();
     }
 
     @Override

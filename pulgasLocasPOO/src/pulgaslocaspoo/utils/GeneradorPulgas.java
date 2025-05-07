@@ -43,5 +43,4 @@ public class GeneradorPulgas extends Thread {
         interrupt();
     }
     
-    
 }
