@@ -7,6 +7,7 @@ package pulgaslocaspoo.views;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import javax.swing.*;
 import pulgaslocaspoo.models.CampoBatalla;
 import pulgaslocaspoo.models.Pulga;
@@ -19,6 +20,8 @@ import pulgaslocaspoo.models.SimuladorPulgas;
 public class PanelCampo extends JPanel {
     private CampoBatalla campo;
     private SimuladorPulgas simulador;
+    private int mouseX;
+    private int mouseY;
 
     public PanelCampo(CampoBatalla campo, SimuladorPulgas simulador) {
         this.campo = campo;
@@ -37,6 +40,19 @@ public class PanelCampo extends JPanel {
                 }
             }
         });
+
+        // Agregar MouseMotionListener para rastrear el movimiento del mouse
+        this.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+            }
+        });
+    }
+
+    public void setSimulador(SimuladorPulgas simulador) {
+        this.simulador = simulador;
     }
 
     @Override
@@ -50,5 +66,13 @@ public class PanelCampo extends JPanel {
 
     public void actualizar() {
         repaint();
+    }
+
+    public int getMouseX() {
+        return mouseX;
+    }
+
+    public int getMouseY() {
+        return mouseY;
     }
 }

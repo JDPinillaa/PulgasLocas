@@ -4,17 +4,40 @@
  */
 package pulgaslocaspoo.views;
 
-/**
- *
- * @author ACER
- */
+import pulgaslocaspoo.models.CampoBatalla;
+import pulgaslocaspoo.models.SimuladorPulgas;
+
 public class Mapa extends javax.swing.JFrame {
+    private CampoBatalla campo;
+    private SimuladorPulgas simulador;
+    private PanelCampo panelCampo;
 
     /**
      * Creates new form Mapa
      */
     public Mapa() {
+        campo = new CampoBatalla(800, 600); // Tamaño del campo de batalla
+        panelCampo = new PanelCampo(campo, null); // Crear el PanelCampo
+        simulador = new SimuladorPulgas(campo, panelCampo); // Pasar el PanelCampo al simulador
+        panelCampo.setSimulador(simulador); // Configurar el simulador en el PanelCampo
+
         initComponents();
+
+        // Configurar el jPanel1 para que contenga el PanelCampo
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(panelCampo);
+        jPanel1.revalidate();
+        jPanel1.repaint();
+
+        // Agregar KeyListener para manejar teclas
+        this.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                char tecla = evt.getKeyChar();
+                simulador.manejarTecla(tecla);
+                panelCampo.actualizar();
+            }
+        });
     }
 
     /**
@@ -34,7 +57,7 @@ public class Mapa extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 57));
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Simulador de Pulgas");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

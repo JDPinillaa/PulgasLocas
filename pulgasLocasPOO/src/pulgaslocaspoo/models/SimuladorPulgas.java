@@ -4,9 +4,10 @@
  */
 package pulgaslocaspoo.models;
 
-import pulgaslocaspoo.utils.GeneradorPulgas;
-import pulgaslocaspoo.utils.ArchivoPuntuacion;
 import javax.swing.JOptionPane;
+import pulgaslocaspoo.utils.ArchivoPuntuacion;
+import pulgaslocaspoo.utils.GeneradorPulgas;
+import pulgaslocaspoo.views.PanelCampo;
 
 /**
  *
@@ -18,12 +19,30 @@ public class SimuladorPulgas {
     private ArchivoPuntuacion archivoPuntuacion;
     private int puntuacionActual;
     private int puntuacionMaxima;
+    private PanelCampo panelCampo; // Referencia al PanelCampo
 
     public SimuladorPulgas() {
         campo = new CampoBatalla(800, 600);
         generador = new GeneradorPulgas(campo);
         archivoPuntuacion = new ArchivoPuntuacion();
         puntuacionMaxima = archivoPuntuacion.leerPuntajeMaximo(); // Método corregido
+        generador.start();
+    }
+
+    public SimuladorPulgas(CampoBatalla campo) {
+        this.campo = campo;
+        generador = new GeneradorPulgas(campo);
+        archivoPuntuacion = new ArchivoPuntuacion();
+        puntuacionMaxima = archivoPuntuacion.leerPuntajeMaximo(); // Método corregido
+        generador.start();
+    }
+
+    public SimuladorPulgas(CampoBatalla campo, PanelCampo panelCampo) {
+        this.campo = campo;
+        this.panelCampo = panelCampo;
+        generador = new GeneradorPulgas(campo);
+        archivoPuntuacion = new ArchivoPuntuacion();
+        puntuacionMaxima = archivoPuntuacion.leerPuntajeMaximo();
         generador.start();
     }
 
@@ -53,13 +72,11 @@ public class SimuladorPulgas {
 
     // Métodos para obtener las coordenadas del mouse (implementación dependerá de la interfaz gráfica)
     private int obtenerCoordenadaMouseX() {
-        // Ejemplo: devolver una coordenada fija o implementar lógica para obtenerla
-        return 400; // Coordenada X del mouse
+        return panelCampo.getMouseX();
     }
 
     private int obtenerCoordenadaMouseY() {
-        // Ejemplo: devolver una coordenada fija o implementar lógica para obtenerla
-        return 300; // Coordenada Y del mouse
+        return panelCampo.getMouseY();
     }
 
     public void manejarClic(int x, int y) {
