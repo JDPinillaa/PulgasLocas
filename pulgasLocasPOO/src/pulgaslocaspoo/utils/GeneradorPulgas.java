@@ -5,10 +5,13 @@
 package pulgaslocaspoo.utils;
 
 import java.util.Random;
+<<<<<<< HEAD:pulgasLocasPOO/src/pulgaslocaspoo/utils/GeneradorPulgas.java
 import pulgaslocaspoo.models.CampoBatalla;
 import pulgaslocaspoo.models.PulgaMutante;
 import pulgaslocaspoo.models.PulgaNormal;
 
+=======
+>>>>>>> 8a6defc3d3c6630a219072b609b7f02f630f7875:pulgasLocasPOO/src/pulgaslocaspoo/models/GeneradorPulgas.java
 /**
  *
  * @author ACER
@@ -28,10 +31,10 @@ public class GeneradorPulgas extends Thread {
         while (activo) {
             try {
                 Thread.sleep(5000); // Pulgas normales cada 5s
-                campo.agregarPulgaSafe(new PulgaNormal());
+                campo.agregarPulga(new PulgaNormal());
                 
                 Thread.sleep(5000); // Pulgas mutantes cada 10s
-                campo.agregarPulgaSafe(new PulgaMutante());
+                campo.agregarPulga(new PulgaMutante());
             } catch (InterruptedException e) {
                 System.out.println("Generador interrumpido");
             }
@@ -42,5 +45,6 @@ public class GeneradorPulgas extends Thread {
         activo = false;
         interrupt();
     }
+    
     
 }

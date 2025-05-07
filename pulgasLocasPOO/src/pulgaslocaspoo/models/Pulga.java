@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pulgaslocaspoo.models;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -13,6 +15,7 @@ public abstract class Pulga {
     private int y;
     private int resistencia;
     private boolean impactada;
+    protected Image imagen;
 
     public Pulga(int x, int y, int resistencia) {
         this.x = x;
@@ -32,4 +35,7 @@ public abstract class Pulga {
     public void setResistencia(int resistencia) { this.resistencia = resistencia; }
     public boolean isImpactada() { return impactada; }
     public void setImpactada(boolean impactada) { this.impactada = impactada; }
+    public Image getImagen() {
+    return imagen;
+}
 }

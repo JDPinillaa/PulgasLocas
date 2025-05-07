@@ -76,4 +76,8 @@ public class CampoBatalla {
     public int getAlto() {
         return alto;
     }
+
+    void agregarPulgaSafe(PulgaNormal pulgaNormal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
