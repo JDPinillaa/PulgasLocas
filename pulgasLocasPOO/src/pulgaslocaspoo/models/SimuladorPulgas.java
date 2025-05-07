@@ -4,6 +4,8 @@
  */
 package pulgaslocaspoo.models;
 
+import pulgaslocaspoo.utils.GeneradorPulgas;
+import pulgaslocaspoo.utils.ArchivoPuntuacion;
 import javax.swing.JOptionPane;
 
 /**

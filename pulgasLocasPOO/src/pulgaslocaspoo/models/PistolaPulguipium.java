@@ -5,14 +5,19 @@
 package pulgaslocaspoo.models;
 
 import java.util.List;
+import pulgaslocaspoo.utils.Reproductor;
 
 /**
  *
  * @author ACER
  */
 public class PistolaPulguipium extends Arma {
+
     @Override
     public void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador) {
+        // Reproducir sonido
+        Reproductor.reproducirSonido("src/resources/sounds/pistola.wav");
+
         int radio = 1; // Precisión cercana
         List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio);
 

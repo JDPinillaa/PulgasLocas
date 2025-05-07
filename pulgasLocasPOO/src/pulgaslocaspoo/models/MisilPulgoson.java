@@ -5,6 +5,7 @@
 package pulgaslocaspoo.models;
 
 import java.util.List;
+import pulgaslocaspoo.utils.Reproductor;
 
 /**
  *
@@ -14,6 +15,9 @@ public class MisilPulgoson extends Arma{
     
     @Override
     public void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador) {
+        // Reproducir sonido
+        Reproductor.reproducirSonido("src/resources/sounds/misil.wav");
+
         int radio = 3; // Afecta un área más grande
         List<Pulga> afectadas = campo.getPulgasEnRadio(x, y, radio); // Usar las coordenadas del mouse
 

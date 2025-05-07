@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pulgaslocaspoo.models;
+package pulgaslocaspoo.utils;
 
 import java.util.Random;
+import pulgaslocaspoo.models.CampoBatalla;
+import pulgaslocaspoo.models.PulgaMutante;
+import pulgaslocaspoo.models.PulgaNormal;
 
 /**
  *
