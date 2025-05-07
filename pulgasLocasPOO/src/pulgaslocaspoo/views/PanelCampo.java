@@ -5,6 +5,8 @@
 package pulgaslocaspoo.views;
 import javax.swing.*;
 import java.awt.*;
+import pulgaslocaspoo.models.CampoBatalla;
+import pulgaslocaspoo.models.Pulga;
 /**
  *
  * @author ACER
