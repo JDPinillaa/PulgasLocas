@@ -6,63 +6,75 @@ package pulgaslocaspoo.views;
 
 import pulgaslocaspoo.models.CampoBatalla;
 import pulgaslocaspoo.models.SimuladorPulgas;
+import javax.swing.JFrame;
 
-public class Mapa extends javax.swing.JFrame {
-    private CampoBatalla campo;
-    private SimuladorPulgas simulador;
+public class Mapa extends JFrame {
     private PanelCampo panelCampo;
+    private SimuladorPulgas simulador;
 
-    /**
-     * Creates new form Mapa
-     */
     public Mapa() {
-        campo = new CampoBatalla(800, 600); // Tamaño del campo de batalla
-        simulador = new SimuladorPulgas(campo, null); // Crear el simulador sin el panel inicialmente
-        panelCampo = new PanelCampo(campo, simulador); // Crear el PanelCampo con el simulador
-
-        // Ahora actualiza la referencia del panel en el simulador
-        simulador.setPanelCampo(panelCampo);
-
         initComponents();
 
-        // Configurar el panelCampoContaige para que contenga el PanelCampo
+        CampoBatalla campo = new CampoBatalla(800, 600);
+        simulador = new SimuladorPulgas(campo); // Crea el simulador SIN panelCampo
+        panelCampo = new PanelCampo(campo, simulador); // Ahora sí, crea el panel
+        simulador.setPanelCampo(panelCampo); // Asocia el panel al simulador
+        simulador.setMapa(this);
+
         panelCampoContaige.setLayout(new java.awt.BorderLayout());
+        panelCampoContaige.removeAll();
         panelCampoContaige.add(panelCampo, java.awt.BorderLayout.CENTER);
-
-        // Configurar la etiqueta de puntaje
-        jLabel2.setText("Puntaje: 0"); // Puntaje inicial
-        panelCampoContaige.add(jLabel2, java.awt.BorderLayout.NORTH);
-
         panelCampoContaige.revalidate();
         panelCampoContaige.repaint();
 
-        // Agregar KeyListener para manejar teclas
-        this.addKeyListener(new java.awt.event.KeyAdapter() {
+        panelCampo.setFocusable(true);
+        panelCampo.requestFocusInWindow();
+
+        panelCampo.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                char tecla = evt.getKeyChar();
-                simulador.manejarTecla(tecla);
-                panelCampo.actualizar();
-                actualizarPuntaje(); // Actualizar el puntaje en la interfaz
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                simulador.manejarTecla(e.getKeyChar());
             }
         });
 
-        this.setFocusable(true);
-        this.requestFocusInWindow();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
     }
 
-    private void actualizarPuntaje() {
-        jLabel2.setText(": " + simulador.getPuntuacionActual());
+    public void actualizarPuntaje() {
+        labelScore.setText(" " + simulador.getPuntuacionActual());
     }
 
     public void notificarActualizacion() {
         if (panelCampo != null) {
             panelCampo.actualizar(); // Redibujar el panel
         }
-        // Asegurarse de que el puntaje se actualice en la interfaz
-        if (panelCampo.getParent() instanceof Mapa) {
-            ((Mapa) panelCampo.getParent()).actualizarPuntaje();
+        actualizarPuntaje(); // Llama directamente aquí
+    }
+
+    private void startSimulationButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        System.out.println("Botón de iniciar simulación presionado.");
+
+        // Crear una instancia de la ventana del mapa
+        Mapa mapa = new Mapa();
+        mapa.setVisible(true);
+
+        // Ocultar la pantalla principal
+        this.setVisible(false);
+    }
+
+    public void terminarSimulacion() {
+        if (simulador != null) {
+            simulador.detenerHilos();
+            simulador.actualizarPuntajeMaximo();
         }
+        // Busca la ventana principal y ciérrala
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(panelCampo);
+        if (window != null) {
+            window.dispose();
+        }
+        // Si quieres volver a la pantalla principal, puedes mostrarla aquí
+        // new PantallaPrincipal().setVisible(true);
     }
 
     /**
@@ -78,7 +90,8 @@ public class Mapa extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         panelCampoContaige = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        labelScore = new javax.swing.JLabel();
+        puntuaciónLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -121,7 +134,9 @@ public class Mapa extends javax.swing.JFrame {
             .addGap(0, 403, Short.MAX_VALUE)
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/logoPuntaje (1).png"))); // NOI18N
+        labelScore.setForeground(new java.awt.Color(0, 0, 153));
+        labelScore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pulgaslocaspoo/resources/logoPuntaje (1).png"))); // NOI18N
+        labelScore.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,15 +148,23 @@ public class Mapa extends javax.swing.JFrame {
                 .addGap(81, 81, 81))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel2)
+                .addComponent(labelScore)
+                .addGap(30, 30, 30)
+                .addComponent(puntuaciónLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(17, Short.MAX_VALUE)
+                        .addComponent(labelScore)
+                        .addGap(32, 32, 32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(puntuaciónLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(panelCampoContaige, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
         );
@@ -200,10 +223,11 @@ public class Mapa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel labelScore;
     private javax.swing.JPanel panelCampoContaige;
+    private javax.swing.JLabel puntuaciónLabel;
     // End of variables declaration//GEN-END:variables
 }

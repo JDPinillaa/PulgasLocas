@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ACER/Desktop/proyectosJava/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/models/SimuladorPulgas.java</file>
-            <file>file:/C:/Users/ACER/Desktop/proyectosJava/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/models/GeneradorPulgas.java</file>
-            <file>file:/C:/Users/ACER/Desktop/proyectosJava/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/models/Arma.java</file>
-            <file>file:/C:/Users/ACER/Desktop/proyectosJava/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/models/MisilPulgoson.java</file>
-            <file>file:/C:/Users/ACER/Desktop/proyectosJava/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/models/PistolaPulguipium.java</file>
-            <file>file:/C:/Users/ACER/Desktop/proyectosJava/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/models/CampoBatalla.java</file>
+            <file>file:/C:/Users/juand/Desktop/PulgasLocasPOO/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/views/PanelCampo.java</file>
+            <file>file:/C:/Users/juand/Desktop/PulgasLocasPOO/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/utils/HiloActualizacionPanel.java</file>
+            <file>file:/C:/Users/juand/Desktop/PulgasLocasPOO/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/utils/HiloMovimientoPulgas.java</file>
+            <file>file:/C:/Users/juand/Desktop/PulgasLocasPOO/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/views/PantallaPrincipal.java</file>
+            <file>file:/C:/Users/juand/Desktop/PulgasLocasPOO/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/main/PulgasLocasPOO.java</file>
+            <file>file:/C:/Users/juand/Desktop/PulgasLocasPOO/PulgasLocas/pulgasLocasPOO/src/pulgaslocaspoo/views/Mapa.java</file>
         </group>
     </open-files>
 </project-private>

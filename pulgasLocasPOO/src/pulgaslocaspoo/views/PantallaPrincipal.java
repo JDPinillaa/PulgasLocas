@@ -127,6 +127,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startSimulationButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startSimulationButtonMouseClicked
+        System.out.println("Botón de iniciar simulación presionado.");
+
         // Crear una instancia de la ventana del mapa
         Mapa mapa = new Mapa();
         mapa.setVisible(true);
@@ -136,11 +138,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_startSimulationButtonMouseClicked
 
     private void bestScoreButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bestScoreButtonMouseClicked
-        // Leer el puntaje máximo desde ArchivoPuntuacion
         ArchivoPuntuacion archivoPuntuacion = new ArchivoPuntuacion();
         int mejorPuntaje = archivoPuntuacion.leerPuntajeMaximo();
 
-        // Mostrar el puntaje máximo en un MessageDialog
         javax.swing.JOptionPane.showMessageDialog(this, 
             "El mejor puntaje es: " + mejorPuntaje, 
             "Mejor Puntaje", 

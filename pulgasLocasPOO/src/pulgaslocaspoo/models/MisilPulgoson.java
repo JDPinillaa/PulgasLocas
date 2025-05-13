@@ -10,11 +10,25 @@ import java.util.List;
 import pulgaslocaspoo.utils.Reproductor;
 
 /**
- *
- * @author ACER
+ * Clase que representa el arma "MisilPulgoson".
+ * Este arma elimina la mitad de las pulgas presentes en el campo de batalla
+ * de manera aleatoria y reproduce un sonido de explosión.
+ * 
+ * @author Santiago Uribe
+ * @version 1.0
+ * @since 2025-05-07
  */
-public class MisilPulgoson extends Arma{
-    
+public class MisilPulgoson extends Arma {
+
+    /**
+     * Dispara el misil, eliminando la mitad de las pulgas en el campo de batalla
+     * de manera aleatoria. Por cada pulga eliminada, se incrementa la puntuación.
+     * 
+     * @param campo El campo de batalla donde se encuentran las pulgas.
+     * @param x No utilizado en esta implementación.
+     * @param y No utilizado en esta implementación.
+     * @param simulador El simulador que controla la lógica del juego.
+     */
     @Override
     public void disparar(CampoBatalla campo, int x, int y, SimuladorPulgas simulador) {
         Reproductor.reproducirSonido("src/pulgaslocaspoo/resources/explosion.wav");
@@ -38,5 +52,4 @@ public class MisilPulgoson extends Arma{
         // Redibujar el panel
         simulador.getPanelCampo().actualizar();
     }
-
 }
